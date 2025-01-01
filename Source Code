@@ -1,0 +1,119 @@
+class mata_kuliah:
+    def __init__(self, no_matkul, nama_matkul, dosbim):
+        self.nomor = int(no_matkul)
+        self.matkul = str(nama_matkul)
+        self.dosen = str(dosbim)
+    
+    def getNomor(self):
+        return self.nomor
+
+    def getMatkul(self):
+        return self.matkul
+
+    def getDosbim(self):
+        return self.dosen
+
+    def setNomor(self, no_matkul):
+        self.nomor = nomor
+
+    def setMatkul(self, nama_matkul):
+        self.matkul = nama_matkul
+
+    def setDosbim(self,dosbim):
+        self.dosen = dosbim
+
+dbmtkl = {}
+loop = True
+
+print("==========================================================")
+print("=        Database Mata Kuliah TRI Semester 1 dan 2       =")
+print("==========================================================")
+print("=           MENU                                         =")
+print("=        1. Tambah Mata Kuliah                           =")
+print("=           Tambah Kode Mata Kuliah                      =")
+print("=           Tambah Dosen Mata Kuliah                     =")
+print("=        2. Hapus Data Mata Kuliah                       =")
+print("=        3. Tampilkan Data Mata Kuliah                   =")
+print("=        4. Cari Mata Kuliah                             =")
+print("=        5. Edit Data Mata Kuliah                        =")
+print("=        6. Jumlah Semua Mata Kuliah                     =")
+print("=        7. Jumlah Semua nomor Mata Kuliah               =")
+print("=        8. Jumlah Semua Dosen                           =")
+print("=        0. Keluar                                       =")
+print("==========================================================")
+
+while (loop):
+    print("\n\n")
+    menu = int(input("Masukkan menu: "))
+
+    if menu == 1:
+        matkul = str(input("Masukkan Mata Kuliah: "))
+        nomor = int(input("Masukkan Kode Mata Kuliah: "))
+        dosen = str(input("Masukkan Dosen Mata Kuliah: "))
+        mhs = mata_kuliah(nomor,matkul,dosen)
+        dbmtkl[nomor] = mhs
+        
+    elif menu == 2:
+        nomor = str(input("Masukkan Kode Mata Kuliah: "))
+        if nomor in dbmtkl:
+            del dbmtkl[nomor]
+        else:
+            print("Data tidak ditemukan!")
+            
+    elif menu == 3:
+        for i in dbmtkl:
+            print("Mata Kuliah: ", dbmtkl[i].getMatkul())
+            print("Kode Mata Kuliah: ", dbmtkl[i].getNomor())
+            print("Dosen Mata Kuliah: ", dbmtkl[i].getDosbim())
+            print('\n')
+
+    elif menu == 4:
+        nomor = int(input("Masukan Kode Mata Kuliah: "))
+        if (nomor in dbmtkl):
+            print("Nama Mata Kuliah: ", dbmtkl[nomor].getMatkul())
+            print("Kode Mata Kuliah: ", dbmtkl[nomor].getNomor())
+            print("Nama Dosen Mata Kuliah: ", dbmtkl[nomor].getDosbim())
+        else:
+            print("Data tidak ditemukan!")
+            
+    elif menu == 5:
+        nomor = str(input("Masukkan Kode Mata Kuliah: "))
+        if ( nomor in dbmtkl):
+            namaBaru = str(input("Masukan Mata Kuliah Baru: "))
+            dbmtkl[nomor].setNama(namaBaru)
+            nomorBaru = int(input("Masukan Nomor Mata Kuliah: "))
+            dbmtkl[nomor].setNomor(nomorBaru)
+            namaDosenBaru = str(input("Masukan Nama Dosen: "))
+            dbmtkl[nomor].setDosbim(namaDosenBaru)
+            mhs = mata_kuliah[nomor]
+            dbmtkl[nomorBaru] = mhs
+            del dbmtkl[nomor] 
+        else:
+            print("Data tidak ditemukan!!!")
+            
+    
+    elif menu == 16:
+        print("Total Mata Kuliah: ", len(dbmtkl))
+    elif menu == 17:
+        print("Total Nomor Mata Kuliah: ", len(dbmtkl))
+    elif menu == 18:
+        print("Total Dosen: ", len(dbmtkl))
+    elif menu == 0:
+        loop = False
+    else:
+        
+        print("XXX")
+
+        nomor = int(input("Masukan Nomor Mata Kuliah: "))
+        if nomor in dbmtkl:
+            nomorBaru = int(input("Masukan Nomor Mata Kuliah: "))
+            dbmtkl[nomor].setNomor(nomorBaru)
+        else:
+            print("Data tidak ditemukan!!!")
+            
+        dosen = str(input("Masukan Nama Dosen: "))
+        if dosen in dbmtkl:
+            namaDosenBaru = str(input("Masukan Nama Dosen: "))
+            dbmtkl[dosen].setDosbim(namaDosenBaru)
+        else:
+            print("Data tidak ditemukan!!!")
